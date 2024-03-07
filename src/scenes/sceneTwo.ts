@@ -25,7 +25,7 @@ export default class Scene2 extends Phaser.Scene {
             .setInteractive()
             .setTint(0x2255ff)
             .setScale(0.75)
-            .setBounce(1.2)
+            .setBounce(1.5)
             .setCollideWorldBounds(true)
             .setVelocityX(velocity);
         this.time.addEvent({

@@ -32,9 +32,9 @@ export default class Scene3 extends Phaser.Scene {
             delay: 300,
             loop: true,
             callback: () => {
-                next.setVelocityX(Math.random() * 3000 * velocity);
+                next.setVelocityX(Phaser.Math.Between(-1000, 1000) * velocity);
                 next.setVelocityY(
-                    Math.random() * 3000 * velocity * -1
+                    Phaser.Math.Between(-1000, 1000) * velocity
                 ).setRotation(Math.random() * 3000);
             },
         });
