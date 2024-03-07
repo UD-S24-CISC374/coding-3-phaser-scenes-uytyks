@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 
-export default class Scene2 extends Phaser.Scene {
+export default class Scene3 extends Phaser.Scene {
     constructor() {
-        super({ key: "Scene2" });
+        super({ key: "Scene3" });
     }
     misses: number;
 
@@ -10,9 +10,9 @@ export default class Scene2 extends Phaser.Scene {
         this.misses = data.misses;
     }
     create() {
+        let velocity = 10000;
         let sky = this.add.image(400, 300, "sky");
-        sky.setTint(0x000070).setInteractive();
-        let velocity = 1000;
+        sky.setTint(0x00ff00).setInteractive();
         let message = `Misses: ${this.misses}`;
         let msgText = this.add
             .text(this.cameras.main.width - 15, 15, message, {
@@ -23,20 +23,23 @@ export default class Scene2 extends Phaser.Scene {
         let next = this.physics.add
             .image(100, 300, "next")
             .setInteractive()
-            .setTint(0x2255ff)
+            .setTint(0x22ff22)
             .setScale(0.75)
-            .setBounce(1.2)
+            .setBounce(1)
             .setCollideWorldBounds(true)
-            .setVelocityX(velocity);
+            .setRotation(Math.random() * 3000);
         this.time.addEvent({
-            delay: 2000,
+            delay: 300,
             loop: true,
             callback: () => {
-                next.setVelocityX(velocity * -1);
+                next.setVelocityX(Math.random() * 3000 * velocity);
+                next.setVelocityY(
+                    Math.random() * 3000 * velocity * -1
+                ).setRotation(Math.random() * 3000);
             },
         });
         next.on("pointerdown", () => {
-            this.scene.start("Scene3", { misses: this.misses });
+            this.scene.start("Scene4", { misses: this.misses });
         });
         sky.on("pointerdown", () => {
             this.misses++;

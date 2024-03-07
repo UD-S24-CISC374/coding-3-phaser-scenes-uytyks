@@ -19,8 +19,6 @@ export default class PreloadScene extends Phaser.Scene {
 
     create() {
         this.scene.start("MainScene");
-        this.scene.start("Scene2");
-        this.scene.sleep("Scene2");
         this.time.addEvent({
             delay: 3000,
             loop: true,
